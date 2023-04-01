@@ -1,0 +1,22 @@
+<%= form_with(model: @dish, local: true) do |form| %>
+<%=render 'shared/errors', obj:@dish%>
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.text_field :price %>
+  </div>
+
+   <% if @dish.new_record? %>
+    <p>
+      <%= form.hidden_field :restaurant_id, value: params[:restaurant_id] %>
+    </p>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

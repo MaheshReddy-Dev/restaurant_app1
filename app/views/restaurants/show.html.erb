@@ -1,0 +1,55 @@
+  <p>
+    <strong>Name:</strong>
+    <%= @restaurant.name %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @restaurant.address %>
+  </p>
+
+ <p>
+    <strong>Status:</strong>
+    <% if @restaurant.status? %>
+            Open
+          <% else %>
+            Closed
+      <% end %>
+  </p>
+<h2>Dishes:</h2>
+<% if @dishes.any? %>
+  <% @dishes.each do |dish| %>
+    <p><%= link_to dish.name, restaurant_dish_path(@restaurant, dish) %> - <%= dish.price %></p>
+  <% end %>
+<% else %>
+  <p>No dishes added.</p>
+<% end %>
+
+<h2>Reviews:</h2>
+<% if @restaurant.reviews.any? %>
+  <% @restaurant.reviews.each do |review| %>
+    <p><%= review.rating %> - <%= review.content %></p>
+  <% end %>
+<% else %>
+  <p>There are no reviews</p>
+<% end %>
+
+<%= form_for [@restaurant, Review.new] do |f| %>
+  <%= f.label :rating %>
+  <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]) %>
+
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+
+  <%= f.submit "Submit Review" %>
+<% end %>
+
+<% if current_user && current_user.role == "Admin"%>
+  <div>
+    <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
+    <%= link_to 'Add Dish', new_dish_path(restaurant_id: @restaurant.id) %> |
+    <%= link_to 'Destroy', @restaurant,data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %>
+  </div>
+<% end %>
+
+<%= link_to "Back to restaurants", restaurants_path %>
