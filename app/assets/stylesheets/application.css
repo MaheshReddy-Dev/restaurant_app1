@@ -79,4 +79,170 @@
     .submit-btn:hover {
     background-color: #388e3c;
     }
-   
+    .user-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .user-info a {
+      color: #fff;
+      text-decoration: none;
+      background-color: #007bff;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+    }
+    
+    .sign-out {
+      margin-left: 1rem;
+    }
+    
+    .page-title {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    
+    .filter-form {
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .filter-form label {
+      margin-right: 1rem;
+    }
+    
+    .filter-form select {
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      border: 1px solid #ced4da;
+    }
+    
+    .filter-form input[type="submit"] {
+      color: #fff;
+      background-color: #007bff;
+      border-color: #007bff;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+    
+    .clear-filter {
+      margin-left: 1rem;
+      color: #007bff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    
+    .status-open {
+      color: green;
+    }
+    
+    .status-closed {
+      color: red;
+    }
+    
+    .restaurant-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    
+    .restaurant-table th,
+    .restaurant-table td {
+      padding: 0.75rem;
+      vertical-align: top;
+      border-top: 1px solid #dee2e6;
+    }
+    
+    .restaurant-table th {
+      text-align: left;
+      background-color: #007bff;
+      color: #fff;
+    }
+    
+    .restaurant-table td:last-child {
+      white-space: nowrap;
+    }
+    
+    .restaurant-table a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    
+    .restaurant-table a:hover {
+      text-decoration: underline;
+    }
+    
+    .add-restaurant {
+      margin-top: 1rem;
+    }
+    
+    .add-restaurant a {
+      color: #fff;
+      text-decoration: none;
+      background-color: #007bff;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+    }
+ 
+
+    .dish-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  h1, h2 {
+    margin-top: 0;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+
+  .review {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .review p {
+    margin: 0;
+  }
+
+  .review strong {
+    margin-right: 5px;
+  }
+
+  .admin-links {
+    margin-top: 10px;
+  }
+
+  .admin-links a {
+    margin-right: 10px;
+  }

@@ -1,5 +1,5 @@
-<%= form_with(model: restaurant) do |form| %>
-<%=render 'shared/errors', obj:@restaurant%>
+<%= form_with(model: restaurant, class: "restaurant-form") do |form| %>
+  <%= render 'shared/errors', obj: @restaurant %>
 
   <div>
     <%= form.label :name, style: "display: block" %>
@@ -10,12 +10,16 @@
     <%= form.label :address, style: "display: block" %>
     <%= form.text_field :address %>
   </div>
-      <p><%=form.label "status:"%>
-        <%=form.radio_button(:status, "true")%>
-        <%=form.label(:status, "open")%>
-        <%=form.radio_button(:status, "false")%>
-        <%=form.label(:status, "closed")%></p>
-      <div>
+
+  <p>
+    <%= form.label "status:" %>
+    <%= form.radio_button(:status, "true") %>
+    <%= form.label(:status, "open") %>
+    <%= form.radio_button(:status, "false") %>
+    <%= form.label(:status, "closed") %>
+  </p>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
