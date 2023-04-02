@@ -22,4 +22,13 @@
   <div class="save-group">
     <%= form.submit "Save", class: "btn btn-primary" %>
   </div>
+     <% if @dish.new_record? %>
+  <div>
+  <%= link_to "Back to restaurant", restaurant_path(params[:restaurant_id]) %>
+</div>
+  <% else %>
+  <div>
+  <%= link_to "Back to restaurant", @dish.restaurant %> | <%= link_to "Back to restaurants", restaurants_path %>
+</div>
+<% end%>
 <% end %>
