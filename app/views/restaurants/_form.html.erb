@@ -1,25 +1,27 @@
 <%= form_with(model: restaurant, class: "restaurant-form") do |form| %>
   <%= render 'shared/errors', obj: @restaurant %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <h1><%= @restaurant.new_record? ? "New Restaurant" : "Edit Restaurant" %></h1>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address %>
+  <div class="form-group">
+    <%= form.label :address %>
+    <%= form.text_field :address, class: "form-control" %>
   </div>
 
-  <p>
-    <%= form.label "status:" %>
+  <div class="form-group">
+    <%= form.label :status %>
     <%= form.radio_button(:status, "true") %>
-    <%= form.label(:status, "open") %>
+    <%= form.label(:status, "Open") %>
     <%= form.radio_button(:status, "false") %>
-    <%= form.label(:status, "closed") %>
-  </p>
+    <%= form.label(:status, "Closed") %>
+  </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="save-group">
+    <%= form.submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>

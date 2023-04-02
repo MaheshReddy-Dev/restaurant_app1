@@ -1,13 +1,16 @@
-<%= form_with(model: @dish, local: true,class: "restaurant-form") do |form| %>
-<%=render 'shared/errors', obj:@dish%>
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+<%= form_with(model: dish, class: "restaurant-form") do |form| %>
+  <%= render 'shared/errors', obj: @dish %>
+
+  <h1><%= @dish.new_record? ? "New Dish" : "Edit Dish" %></h1>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
+  <div class="form-group">
+    <%= form.label :price %>
+    <%= form.text_field :price, class: "form-control" %>
   </div>
 
    <% if @dish.new_record? %>
@@ -15,8 +18,8 @@
       <%= form.hidden_field :restaurant_id, value: params[:restaurant_id] %>
     </p>
   <% end %>
-
-  <div>
-    <%= form.submit %>
+  
+  <div class="save-group">
+    <%= form.submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>

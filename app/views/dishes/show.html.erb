@@ -1,8 +1,26 @@
-<div class="dish-"container>
+<div class="dish-container">
   <h1><%= @dish.name %></h1>
   <p><strong>Price:</strong> <%= @dish.price %></p>
   <p><strong>Restaurant:</strong> <%= @dish.restaurant.name %></p>
-  
+
+  <%= form_for [@dish, Review.new] do |f| %>
+  <div class="form-group radio-buttons">
+    <b><%= f.label :rating %>:</b>
+    <% [1, 2, 3, 4, 5].each do |value| %>
+      <%= f.radio_button :rating, value %>
+      <%= label_tag "rating_#{value}", value, class: "radio" %>
+    <% end %>
+  </div>
+
+
+    <div class="form-group">
+      <b><%= f.label :Feedback %>:</b>
+      <%= f.text_area :content, rows: 4, class: "form-control" %>
+    </div>
+
+    <%= f.submit "Submit Review", class: "btn btn-primary" %>
+  <% end %>
+
   <h2>Reviews:</h2>
   <% if @dish.reviews.any? %>
     <% @dish.reviews.each do |review| %>
@@ -20,20 +38,6 @@
       <%= link_to "Edit this dish", edit_dish_path(@dish) %> |
       <%= link_to 'Destroy', @dish, data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %>
     </div>
-  <% end %>
-<br/>
-  <%= form_for [@dish, Review.new] do |f| %>
-    <div class="form-group">
-      <%= f.label :rating %>
-      <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]), {}, {class: "form-control"} %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :content %>
-      <%= f.text_area :content, rows: 4, class: "form-control" %>
-    </div>
-
-    <%= f.submit "Submit Review", class: "btn btn-primary" %>
   <% end %>
 
   <%= link_to "Back to restaurants", restaurants_path %>

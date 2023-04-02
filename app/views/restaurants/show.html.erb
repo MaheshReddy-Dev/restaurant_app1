@@ -1,4 +1,4 @@
-<div class="restaurant-container">
+    <div class="dish-container">
   <div>
     <h1><%= @restaurant.name %></h1>
 
@@ -25,6 +25,22 @@
       <p>No dishes added.</p>
     <% end %>
   </div>
+  <%= form_for [@restaurant, Review.new], html: {class: "review-form"} do |f| %>
+    <div class="form-group">
+      <b><%= f.label :rating %>:</b>
+      <% [1, 2, 3, 4, 5].each do |value| %>
+        <%= f.label :rating, value %>
+        <%= f.radio_button :rating, value, class: "rating-input" %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <b><%= f.label :Feedback%>:</b>
+      <%= f.text_area :content, rows: 4, class: "form-control" %>
+    </div>
+
+    <%= f.submit "Submit Review", class: "btn btn-primary" %>
+  <% end %>
 
   <div class="reviews">
     <h2>Reviews:</h2>
@@ -43,24 +59,12 @@
       <div class="admin-links">
         <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
         <%= link_to 'Add Dish', new_dish_path(restaurant_id: @restaurant.id) %> |
-        <%= link_to 'Destroy', @restaurant,data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %>
+        <%= link_to 'Destroy', @restaurant,data: {turbo_method: :delete, turbo_confirm: 'Are you sure want to delete?'} %>|
+        <%= link_to "Back to restaurants", restaurants_path %>
+        <% else %>
+         <%= link_to "Back to restaurants", restaurants_path %>
       </div>
-    <% end %>
-
-    <%= form_for [@restaurant, Review.new] do |f| %>
-      <div class="form-group">
-        <%= f.label :rating %>
-        <%= f.select :rating, options_for_select([1, 2, 3, 4, 5]), {}, {class: "form-control"} %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :content %>
-        <%= f.text_area :content, rows: 4, class: "form-control" %>
-      </div>
-
-      <%= f.submit "Submit Review", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
 
-<%= link_to "Back to restaurants", restaurants_path %>
