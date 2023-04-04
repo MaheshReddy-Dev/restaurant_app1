@@ -33,15 +33,19 @@ class RestaurantsController < ApplicationController
       end
     end
   end
-
-  def update
-    @restaurant = Restaurant.find(params[:id])
+def update
+  @restaurant = Restaurant.find(params[:id])
+  if @restaurant.update(restaurant_params.except(:status))
     if @restaurant.set_status_with_delay(restaurant_params[:status])
       redirect_to @restaurant, notice: 'Restaurant status will be updated in 5 minutes.'
     else
-      render :edit
+      redirect_to @restaurant, notice: 'Failed to update restaurant status.'
     end
+  else
+    render :edit
   end
+end
+
   
   
 
