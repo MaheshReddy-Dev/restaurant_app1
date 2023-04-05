@@ -25,6 +25,9 @@
       <p>No dishes added.</p>
     <% end %>
   </div>
+      <% if @restaurant.reviews.any? %>
+      <b> Average Rating: </b><%= @restaurant.average_rating %><br />
+    <% end %>
   <%= form_for [@restaurant, Review.new], html: {class: "review-form"} do |f| %>
     <div class="form-group">
       <b><%= f.label :rating %>:</b>
@@ -54,6 +57,8 @@
     <% else %>
       <p>There are no reviews</p>
     <% end %>
+
+
 
     <% if current_user && current_user.role == "Admin"%>
       <div class="admin-links">

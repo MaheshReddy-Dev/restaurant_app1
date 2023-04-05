@@ -9,19 +9,37 @@
 
 <h1 class="page-title">Restaurants</h1>
 
-<div class="filter-form">
-  <%= form_tag restaurants_path, method: :get do %>
-    <%= label_tag :dish_id, "Filter by dish:" %>
-    <%= select_tag :dish_id, options_from_collection_for_select(Dish.all, :id, :name, params[:dish_id]), include_blank: true %>
-    <%= submit_tag "Filter", class: "btn btn-primary" %>
-    <% if params[:dish_id].present? %>
-      <%= link_to "Clear Filter", restaurants_path, class: "clear-filter" %>
+<div class="row">
+  <div class="col-md-6">
+    <%= form_tag restaurants_path, method: :get, class: "form-inline" do %>
+      <%= label_tag :dish_id, "Filter by dish:", class: "mr-sm-2" %>
+      <%= select_tag :dish_id, options_from_collection_for_select(Dish.all, :id, :name, params[:dish_id]), include_blank: " -None-", class: "form-control mr-sm-2" %>
+      <%= submit_tag "Filter", class: "btn btn-primary mr-sm-2" %>
+      <% if params[:dish_id].present? %>
+        <%= link_to "Clear Filter", restaurants_path, class: "btn btn-secondary ml-sm-2" %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= form_tag restaurants_path, method: :get, class: "form-inline" do %>
+      <%= label_tag :search, "Search by dish name:", class: "mr-sm-2" %>
+      <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2" %>
+      <%= submit_tag "Search", class: "btn btn-primary mr-sm-2" %>
+      <% if params[:search].present? %>
+        <%= link_to "Clear Search", restaurants_path, class: "btn btn-secondary ml-sm-2" %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
+
+
+
+
+
+
 <% if @restaurants.any? %>
-  <table class="table">
+  <table >
     <thead>
       <tr>
         <th>Name</th>

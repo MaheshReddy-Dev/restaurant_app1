@@ -1,14 +1,18 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
+  before_action :authenticate_admin!, only: %i[ new edit destroy]
 
+  before_action :authenticate_user!
   def index
-    if params[:dish_id].present?
+    if params[:search].present?
+      @restaurants = Restaurant.joins(:dishes).where("LOWER(dishes.name) LIKE LOWER(?)", "%#{params[:search]}%").distinct
+    elsif params[:dish_id].present?
       @restaurants = Restaurant.joins(:dishes).where(dishes: { id: params[:dish_id] }).distinct
     else
       @restaurants = Restaurant.all
     end
   end
+  
 
   def show
     @restaurant = Restaurant.find(params[:id])
@@ -46,6 +50,7 @@ def update
   end
 end
 
+
   
   
 
@@ -70,4 +75,11 @@ end
     def restaurant_params
       params.require(:restaurant).permit(:name, :address, :status)
     end
+
+    def authenticate_admin!
+      unless current_user.role == "Admin"
+        redirect_to root_path, notice: "No access"
+      end
+    end
+
 end

@@ -3,4 +3,9 @@ class Dish < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true, numericality: true
   has_many :reviews, as: :reviewable, dependent: :destroy
+
+  def average_rating
+    reviews.average(:rating)
+end
+
 end

@@ -3,6 +3,10 @@
   <p><strong>Price:</strong> <%= @dish.price %></p>
   <p><strong>Restaurant:</strong> <%= @dish.restaurant.name %></p>
 
+        <% if @dish.reviews.any? %>
+      <b> Average Rating: </b><%= @dish.average_rating %><br />
+    <% end %>
+
   <%= form_for [@dish, Review.new] do |f| %>
   <div class="form-group radio-buttons">
     <b><%= f.label :rating %>:</b>
@@ -20,7 +24,6 @@
 
     <%= f.submit "Submit Review", class: "btn btn-primary" %>
   <% end %>
-
   <h2>Reviews:</h2>
   <% if @dish.reviews.any? %>
     <% @dish.reviews.each do |review| %>

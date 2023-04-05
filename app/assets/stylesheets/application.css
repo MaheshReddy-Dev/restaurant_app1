@@ -12,7 +12,9 @@
  *
  *= require_tree .
  *= require_self
- */
+    /* Bootstap */
+    @import "bootstrap" ;
+    
     /* Form container */
     .form-container {
     display: flex;
@@ -315,5 +317,29 @@
   .radio-buttons input[type="radio"] {
     margin-right: 5px;
     margin-left: 5px;
+  }
+  .form-inline label, .form-inline select, .form-inline input[type="text"] {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+  
+  .form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+  
+  .form-inline .btn {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  @media (max-width: 575.98px) {
+    .form-inline label, .form-inline select, .form-inline input[type="text"], .form-inline .btn {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
   }
   

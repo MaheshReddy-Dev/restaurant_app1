@@ -16,4 +16,8 @@ class Restaurant < ApplicationRecord
     def self.set_status_with_delay(id, status)
         find(id).delay(run_at: 5.minutes.from_now).set_status(status)
     end
+
+    def average_rating
+        reviews.average(:rating)
+    end
 end
